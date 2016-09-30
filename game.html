@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <title>Funco Games</title>
+
+    <!--  -->
+    
+<body>
+    
+    <div id="show"></div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+<script>
+    
+    var scene = 1;
+    var karma = 0;
+    
+    
+    var scenes = [
+  
+  {
+  'scene': 1,
+  'title':'The 16th Street Mall',
+  'description':'You are walking down the 16th Street Mall in Denver, CO. As you walk past McDonalds, a man, who is gesticulating wildly and swinging a metal pipe at passersby approaches. What do you do?',
+  'random': 10,
+  'option1':'fight him ',    
+  'option2':'run ',
+  'option3':'join him in the revolution ',
+  'image':'img/01.jpg',
+  'option1Val': 2,
+  'option2Val': 0,
+  'option3Val': 4,
+
+  },
+  
+  
+  {
+  'scene': 2,
+  'title':'Union Station',
+  'description':'You arrive at Union Train and Bus Station. Which do you take?',
+  'random': 10,
+  'option1':'The train to DIA to leave the Mile High city.',    
+  'option2':'Boulder',
+  'option3':'Red Rocks Amphitheater',
+  'image':'img/02.jpg',
+  'option1Val': 2,
+  'option2Val': 0,
+  'option3Val': 4,
+
+  },
+      
+ 
+  
+  {
+  'scene': 3,
+  'title':'Red Rocks',
+  'description':'You are hiking around Red Rocks behind a group of people. You notice that a concert ticket has fallen out of the back pocket of one of the hikers. You pick it up and realize it is a ticket to one of your favorite bands. What do you do? ',
+  'random': 10,
+  'option1':'Approach the group and let them know that someone dropped a ticket.',    
+  'option2':'Keep the ticket and go to the concert.',
+  'option3':'Sell the ticket outside the concert later that evening.', 
+  'image':'img/03.jpg',
+  'option1Val': 2,
+  'option2Val': 0,
+  'option3Val': 4,
+  
+    
+
+  },
+        
+    {
+  'scene': 4,
+  'title':'Capitol Building',
+  'description':'You are at the capitol building when you see of the gold dome fall off and hit a government employee, knocking them unconscious. What do you do? ',
+  'random': 10,
+  'option1':'Help the person, of course!',    
+  'option2':'Take the gold and leave that sucker on the ground.',
+  'option3':'Ignore the situation. Drama makes you uncomfortable.',
+  'image':'img/04.jpg',
+  'option1Val': 4,
+  'option2Val': 2,
+  'option3Val': 0,
+
+    }
+
+  ];
+    
+    
+    init();
+    
+    
+    function init(){    
+        checkScene();
+    }    
+        
+    function checkScene(){
+if(scene == 1 ){loadGameScene(1);}
+if(scene == 2 ){loadGameScene(2);}    
+if(scene == 3 ){loadGameScene(3);}    
+    }
+    
+    
+    
+    function loadGameScene(scid){
+        //pos in array
+        scid = scid-1;    
+    var content = buildView(scid);
+document.getElementById('show').innerHTML = content;
+    }
+    
+    
+    function buildView(scid){
+    var text="";
+   text += '<div class="row">';
+    text += '<div class="col-md-8">';
+    text += '<img class="img img-responsive" src="'+scenes[scid].image+'"/>';
+    text += '</div>';
+    text += '<div class="col-md-4">';
+    text += '<h2>'+scenes[scid].title+'</h2>';    
+    text += '<p>'+scenes[scid].description+'</p>';
+    text += buildOptionsMenu(scid);
+    text += '</div>';
+    text += '</div>';
+        return text;
+    }
+    
+    function buildOptionsMenu(scid){
+    var text="";
+    text +=''+scenes[scid].option1+'<button class="btn btn-primary" onclick="checkAnswer(scid,1)">Choose</button><br/>';
+    text +=''+scenes[scid].option2+'<button  class="btn btn-primary" onclick="checkAnswer(scid,2)">Choose</button><br/>';
+    text +=''+scenes[scid].option3+'<button  class="btn btn-primary" onclick="checkAnswer(scid,3)">Choose</button><br/>';
+    
+    return text;    
+    
+    }    
+</script>
+    
+</body>
+</html>
